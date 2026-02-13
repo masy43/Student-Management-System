@@ -4,7 +4,7 @@ A sleek, modern web app for managing student records — featuring a real-time d
 
 ## 📸 Preview
 
-![StudentHub Preview](mockup.png)
+![StudentHub Preview](Mockup.png)
 
 ---
 
