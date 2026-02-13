@@ -7,123 +7,218 @@
     <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <main>
-      <div class="container">
-        <div class="info">
-          <h2 class="title">Live Demo</h2>
-          <p class="description">
-            Experience the power of real-time student management
-          </p>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-inner">
+        <div class="logo">
+          <div class="logo-icon">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div class="logo-text">
+            <h1>StudentHub</h1>
+            <span>Management System</span>
+          </div>
         </div>
+        <div class="header-actions">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search students..."
+            />
+          </div>
+          <button class="theme-toggle" id="theme-toggle" title="Toggle theme">
+            <i class="fa-solid fa-moon" id="theme-icon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
 
-        <aside class="student-details">
-          <form action="post" id="student-form">
-            <div class="form-title">
-              <p>Add Student</p>
-              <i class="fa-solid fa-user-plus"></i>
-            </div>
-            <div>
-              <label for="student-name">Student Name</label>
+    <main>
+      <!-- Stats Dashboard -->
+      <section class="stats-grid">
+        <div class="stat-card stat-total">
+          <div class="stat-icon">
+            <i class="fa-solid fa-users"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value" id="stat-total">0</span>
+            <span class="stat-label">Total Students</span>
+          </div>
+        </div>
+        <div class="stat-card stat-avg">
+          <div class="stat-icon">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value" id="stat-avg">0%</span>
+            <span class="stat-label">Average Grade</span>
+          </div>
+        </div>
+        <div class="stat-card stat-pass">
+          <div class="stat-icon">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value" id="stat-passed">0</span>
+            <span class="stat-label">Passed</span>
+          </div>
+        </div>
+        <div class="stat-card stat-fail">
+          <div class="stat-icon">
+            <i class="fa-solid fa-circle-xmark"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value" id="stat-failed">0</span>
+            <span class="stat-label">Failed</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content -->
+      <div class="content-grid">
+        <!-- Add Student Form -->
+        <aside class="card form-card">
+          <div class="card-header">
+            <h2><i class="fa-solid fa-user-plus"></i> Add Student</h2>
+          </div>
+          <form id="student-form" class="student-form">
+            <div class="form-group">
+              <label for="student-name">
+                <i class="fa-solid fa-user"></i> Full Name
+              </label>
               <input
                 type="text"
                 id="student-name"
                 name="name"
-                placeholder="Enter full name"
+                placeholder="e.g. John Doe"
               />
               <div class="error-message">Please enter a valid name</div>
             </div>
-            <div>
-              <label for="student-id">Student ID</label>
+            <div class="form-group">
+              <label for="student-id">
+                <i class="fa-solid fa-id-card"></i> Student ID
+              </label>
               <input
                 type="text"
                 id="student-id"
                 name="id"
-                placeholder="e.g, STU001"
+                placeholder="e.g. STU001"
               />
               <div class="error-message">Please enter a valid ID</div>
             </div>
-            <div>
-              <label for="student-email">Email Address</label>
+            <div class="form-group">
+              <label for="student-email">
+                <i class="fa-solid fa-envelope"></i> Email Address
+              </label>
               <input
                 type="email"
                 id="student-email"
                 name="email"
-                placeholder="student@gmail.com"
+                placeholder="student@example.com"
               />
               <div class="error-message">Please enter a valid email</div>
             </div>
-            <div>
-              <label for="student-grade">Grade (%)</label>
-              <input
-                type="number"
-                id="student-grade"
-                name="grade"
-                min="0"
-                max="100"
-                placeholder="0-100"
-              />
-              <div class="error-message">Grade must be between 0-100</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="student-grade">
+                  <i class="fa-solid fa-star"></i> Grade (%)
+                </label>
+                <input
+                  type="number"
+                  id="student-grade"
+                  name="grade"
+                  min="0"
+                  max="100"
+                  placeholder="0–100"
+                />
+                <div class="error-message">Grade must be 0–100</div>
+              </div>
+              <div class="form-group">
+                <label for="student-department">
+                  <i class="fa-solid fa-building-columns"></i> Department
+                </label>
+                <select name="department" id="student-department">
+                  <option value="SD">SD</option>
+                  <option value="OS">OS</option>
+                  <option value="EL">EL</option>
+                </select>
+              </div>
             </div>
-            <div>
-              <label for="student-department">Department</label>
-              <select name="department" id="student-department">
-                <option value="sd-department">SD</option>
-                <option value="os-department">OS</option>
-                <option value="el-department">EL</option>
-              </select>
-            </div>
-            <button>+ Add Student</button>
+            <button type="submit" class="btn-submit">
+              <i class="fa-solid fa-plus"></i> Add Student
+            </button>
           </form>
         </aside>
 
-        <div class="students-information">
-          <div class="info-title">
-            <p class="student-records">Student Records</p>
-            <div class="filtration">
-              <select name="sort-by" id="sort-by">
-                <option value="select-all">Sort by</option>
-                <option value="name">Name</option>
-                <option value="grade">Grade</option>
-                <option value="department">Department</option>
-              </select>
-              <select name="filter-by" id="filter-by">
-                <option value="select-all">Filter by</option>
-                <option value="passed">Passed</option>
-                <option value="failed">Failed</option>
-              </select>
+        <!-- Student Records -->
+        <section class="card table-card">
+          <div class="card-header">
+            <h2><i class="fa-solid fa-table-list"></i> Student Records</h2>
+            <div class="controls">
+              <div class="select-wrapper">
+                <select name="sort-by" id="sort-by">
+                  <option value="select-all">Sort by</option>
+                  <option value="name">Name</option>
+                  <option value="grade">Grade</option>
+                  <option value="department">Department</option>
+                </select>
+              </div>
+              <div class="select-wrapper">
+                <select name="filter-by" id="filter-by">
+                  <option value="select-all">All Status</option>
+                  <option value="passed">Passed</option>
+                  <option value="failed">Failed</option>
+                </select>
+              </div>
             </div>
           </div>
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>ID</th>
-                <th>Email</th>
-                <th>Grade</th>
-                <th>Department</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody id="students-table-body">
-              <!-- Students will be added here dynamically -->
-              <tr class="no-records">
-                <td colspan="7">
-                  No students added yet. Add your first student!
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>ID</th>
+                  <th>Email</th>
+                  <th>Grade</th>
+                  <th>Department</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="students-table-body">
+                <tr class="no-records">
+                  <td colspan="7">
+                    <div class="empty-state">
+                      <i class="fa-solid fa-user-graduate"></i>
+                      <p>No students added yet</p>
+                      <span>Add your first student using the form</span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
       </div>
     </main>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
     <script src="script.js"></script>
   </body>
 </html>
